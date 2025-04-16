@@ -8,6 +8,7 @@ public class Shark extends Creature{
 
 
     public Shark(int x, int y) {
+        
         super(x, y, ENERGY);
     }
 
