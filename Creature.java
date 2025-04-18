@@ -1,12 +1,11 @@
 
 public class Creature extends WorldObject {
 
-    protected int breedTime;
+//    protected int breedTime;
     protected boolean isMoved;
 
-    public Creature(int x, int y, int breedTime) {
+    public Creature(int x, int y) {
         super(x, y);
-        this.breedTime = breedTime;
         this.isMoved = false;
     }
 

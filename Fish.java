@@ -1,14 +1,21 @@
 import java.util.ArrayList;
 
 public class Fish extends Creature{
-    public static final int BREED_TIME = 20;
+    public static final int[] BREED_TIME = {20, 25, 30, 35};
+    public int breedTime;
 
     public Fish(int x, int y) {
-        super(x, y, BREED_TIME);
+        super(x, y);
+        this.breedTime = BREED_TIME[(int)(Math.random() * BREED_TIME.length)];
+        if(x < 0 || y < 0) {
+            throw new IllegalArgumentException("Position cannot be negative");
+        }
     }
 
     @Override
     public void move(World world) {
+        if(this.isMoved) return;
+
         ArrayList<Position> freePositions = getFreePositions(world);
         Position oldPosition = this.position;
         Position newPosition;
@@ -16,22 +23,21 @@ public class Fish extends Creature{
         if(!freePositions.isEmpty()){
             newPosition = freePositions.get((int)(Math.random() * freePositions.size()));
         }
-        else
-        {
+        else {
             newPosition = this.position;
         }
 
-        if(this.breedTime > 0)
-        {
+        if(this.breedTime > 0) {
             this.breedTime--;
-            world.world[oldPosition.x][oldPosition.y] = new Water(this.position.x, this.position.y);
             this.position = newPosition;
+            world.world[oldPosition.x][oldPosition.y] = new Water(this.position.x, this.position.y);
             world.world[this.position.x][this.position.y] = this;
         }
         else{
-            this.breedTime = BREED_TIME;
+            this.breedTime = BREED_TIME[(int)(Math.random() * BREED_TIME.length)];
             world.world[newPosition.x][newPosition.y] = new Fish(newPosition.x, newPosition.y);
         }
+        this.isMoved = true;
     }
 
     private ArrayList<Position> getFreePositions(World world){

@@ -1,53 +1,80 @@
 import java.util.ArrayList;
 
-public class Shark extends Creature{
+public class Shark extends Creature {
 
-    public static final int ENERGY = 10;
-    public static final int ENERGY_FROM_EATEN_FISH = 3;
+    public static final int ENERGY_FROM_EATEN_FISH = 8;
     public static final int ENERGY_NEEDED_TO_BREED = 20;
 
+    public int energy;
 
-    public Shark(int x, int y) {
-        
-        super(x, y, ENERGY);
+    public Shark(int x, int y, int _energy) {
+        super(x, y);
+        energy = _energy;
     }
 
     @Override
-    public void move(World world)
-    {
-        Position oldPosition = this.position;
-        Pair<ArrayList<Position>,ArrayList<Position>> freePositions = getFreePositions(world);
-        Position newPosition;
+    public void move(World world) {
+        if(this.isMoved) return;
 
-        if(!freePositions.second.isEmpty()){
-            newPosition = freePositions.second.get((int)(Math.random() * freePositions.second.size()));
-        }
-        else if(!freePositions.first.isEmpty()) {
-            newPosition = freePositions.first.get((int)(Math.random() * freePositions.first.size()));
-        }
-        else {
+        Position oldPosition = this.position;
+        Pair<ArrayList<Position>, ArrayList<Position>> freePositions = getFreePositions(world);
+        Position newPosition; //water-first fish-second in pair
+
+        //move logic , fish have a priority
+        if (!freePositions.second.isEmpty()) {
+            newPosition = freePositions.second.get((int) (Math.random() * freePositions.second.size()));
+        } else if (!freePositions.first.isEmpty()) {
+            newPosition = freePositions.first.get((int) (Math.random() * freePositions.first.size()));
+        } else {
             newPosition = this.position;
         }
 
-        if(world.world[newPosition.x][newPosition.y] instanceof Fish) {
+        if (world.world[newPosition.x][newPosition.y] instanceof Fish) {
             eatFish(newPosition, oldPosition, world);
-        }
-        else {
+        } else {
+            this.position = newPosition;
             world.world[newPosition.x][newPosition.y] = this;
             world.world[oldPosition.x][oldPosition.y] = new Water(oldPosition.x, oldPosition.y);
         }
 
+        this.energy--;
+
+        if (this.energy <= 0) {
+            leaveThisWorld(world);
+            return;
+        }
+
+        if(this.energy >= ENERGY_NEEDED_TO_BREED) {
+            this.position = newPosition;
+            breed(world, oldPosition, newPosition);
+        }
+
+        this.isMoved = true;
     }
 
-    private void eatFish(Position newPosition, Position oldPosition, World world){
-        this.breedTime += ENERGY_FROM_EATEN_FISH;
+    private void leaveThisWorld(World world) {
+        world.world[this.position.x][this.position.y] = new Water(this.position.x, this.position.y);
+    }
+
+    private void breed(World world, Position oldPosition, Position newPosition) {
+        if(oldPosition != newPosition){
+            int newSharkEnergy = this.energy / 2;
+            world.world[oldPosition.x][oldPosition.y] = new Shark(oldPosition.x, oldPosition.y, newSharkEnergy);
+            this.energy = this.energy - newSharkEnergy;
+        }
+    }
+
+    private void eatFish(Position newPosition, Position oldPosition, World world) {
+        this.energy += ENERGY_FROM_EATEN_FISH;
+        this.position = newPosition;
         world.world[newPosition.x][newPosition.y] = this;
         world.world[oldPosition.x][oldPosition.y] = new Water(oldPosition.x, oldPosition.y);
     }
 
-    private Pair<ArrayList<Position>,ArrayList<Position>> getFreePositions(World world){
-        return new Pair<ArrayList<Position>,ArrayList<Position>>
-                      (getPositions.getFreePositions(world, this.position),
-                              getPositions.getPositionsWithFish(world, this.position));
+    public Pair<ArrayList<Position>, ArrayList<Position>> getFreePositions(World world) {
+        return new Pair<ArrayList<Position>, ArrayList<Position>>
+                (getPositions.getFreePositions(world, this.position),
+                        getPositions.getPositionsWithFish(world, this.position));
     }
+
 }
