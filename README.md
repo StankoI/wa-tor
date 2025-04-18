@@ -1,1 +1,1 @@
-# wa-tor
+Wator is a simulation based on a discrete model of predator-prey interaction. It simulates the hypothetical toroidal Planet Wa-Tor (Water Torus) whose surface is entirely covered with water, occupied by two species: fish and sharks. The sharks are the predators. They eat the fish. The fish exist on a never ending supply of plankton. Both sharks and fish live according to a strict set of rules. This simulation of a simple ecology is highly dynamic as both species are walking a thin line between continuing life and extinction.
