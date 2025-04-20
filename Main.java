@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Callable;
 
 public class Main {
-    private static final boolean ENABLE_ANIMATION = false;
+    private static final boolean ENABLE_ANIMATION = true;
 
     public static void main(String[] args) {
 
@@ -23,7 +23,6 @@ public class Main {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
-
         World w = new World(screenWidth, screenHeight, numSharks, numFish);
 
         if(ENABLE_ANIMATION) {

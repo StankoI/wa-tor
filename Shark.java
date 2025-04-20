@@ -2,10 +2,9 @@ import java.util.ArrayList;
 
 public class Shark extends Creature {
 
-    public static final int ENERGY_FROM_EATEN_FISH = 8;
-    public static final int ENERGY_NEEDED_TO_BREED = 20;
-
-    public int energy;
+    private static final int ENERGY_FROM_EATEN_FISH = 8;
+    private static final int ENERGY_NEEDED_TO_BREED = 20;
+    private int energy;
 
     public Shark(int x, int y, int _energy) {
         super(x, y);

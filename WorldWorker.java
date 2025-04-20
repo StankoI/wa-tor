@@ -2,7 +2,7 @@ public class WorldWorker implements Runnable{
     private final World world;
     private final int startRow, endRow;
 
-    public WorldWorker(World world, int startRow, int endRow) {
+    public WorldWorker(World world, int startRow, int endRow){
         this.world = world;
         this.startRow = startRow;
         this.endRow = endRow;

@@ -1,4 +1,3 @@
-
 abstract class Creature {
     protected boolean isMoved;
     protected Position position;

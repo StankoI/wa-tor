@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class WorldPanel extends JPanel {
+public class WorldPanel extends JPanel{
     private final World world;
 
     public WorldPanel(World world) {

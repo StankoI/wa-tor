@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Fish extends Creature{
-    public static final int[] BREED_TIME = {20, 25, 30, 35};
-    public int breedTime;
+    private static final int[] BREED_TIME = {20, 25, 30, 35};
+    private int breedTime;
 
     public Fish(int x, int y) {
         super(x, y);

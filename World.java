@@ -3,10 +3,10 @@ import java.util.HashSet;
 public class World {
     public static final int SHARK_ENERGY = 10;
 
-    int width;
-    int height;
-    int sharkCount;
-    int fishCount;
+    public int width;
+    public int height;
+    private final int sharkCount;
+    private final int fishCount;
     Creature[][] world;
     public final Object[] rowLocks;
 
