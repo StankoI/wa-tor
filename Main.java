@@ -11,11 +11,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Callable;
 
 public class Main {
-    private static final boolean ENABLE_ANIMATION = true;
+    private static final boolean ENABLE_ANIMATION = false;
 
     public static void main(String[] args) {
 
-        int NUM_THREADS = 4;
+        int NUM_THREADS = 8;
 
         int numSharks = 10000;
         int numFish = 100000;
