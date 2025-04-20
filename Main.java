@@ -93,7 +93,7 @@ public class Main {
                 executor.shutdownNow();
             }
         }
-        else  // =================================================
+        else  // =================================================  test
         {
             ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
             List<WorldWorker> workers = new ArrayList<>();
