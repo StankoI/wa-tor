@@ -46,7 +46,7 @@ public class Main {
                     }
                 }
             });
-
+            //testing
             ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
             List<WorldWorker> workers = new ArrayList<>();
             int rowsPerThread = w.height / NUM_THREADS;
