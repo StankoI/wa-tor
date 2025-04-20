@@ -15,7 +15,7 @@ public class WorldPanel extends JPanel {
 
         for (int x = 0; x < world.width; x++) {
             for (int y = 0; y < world.height; y++) {
-                if (world.world[x][y] instanceof Water) {
+                if (world.world[x][y] == null) {
                     g.setColor(Color.BLUE);
                 } else if (world.world[x][y] instanceof Fish) {
                     g.setColor(Color.GREEN);

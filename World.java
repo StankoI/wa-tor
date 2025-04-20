@@ -7,7 +7,7 @@ public class World {
     int height;
     int sharkCount;
     int fishCount;
-    WorldObject[][] world;
+    Creature[][] world;
     public final Object[] rowLocks;
 
     World(int width, int height, int sharkCount, int fishCount){
@@ -25,7 +25,7 @@ public class World {
         this.height = height;
         this.sharkCount = sharkCount;
         this.fishCount = fishCount;
-        this.world = new WorldObject[width][height];
+        this.world = new Creature[width][height];
 
         rowLocks = new Object[height];
 
@@ -33,14 +33,13 @@ public class World {
             rowLocks[i] = new Object();
         }
 
-
         initWorld();
     }
 
     private void initWorld(){
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                world[x][y] = new Water(x, y);
+                world[x][y] = null;
             }
         }
 
@@ -55,7 +54,7 @@ public class World {
             int x = (int) (Math.random() * width);
             int y = (int) (Math.random() * height);
 
-            if(world[x][y] instanceof Water){
+            if(world[x][y] == null){
                 positions.add(new Position(x, y));
             }
         }
@@ -65,7 +64,7 @@ public class World {
     public void resetMovedFlags(){
         for(int i = 0; i < this.width; i++){
             for(int j = 0; j < this.height; j++){
-                if(world[i][j] instanceof Creature){
+                if(world[i][j] != null){
                     ((Creature) world[i][j]).isMoved = false;
                 }
             }

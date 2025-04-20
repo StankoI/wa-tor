@@ -30,7 +30,7 @@ public class Fish extends Creature{
         if(this.breedTime > 0) {
             this.breedTime--;
             this.position = newPosition;
-            world.world[oldPosition.x][oldPosition.y] = new Water(this.position.x, this.position.y);
+            world.world[oldPosition.x][oldPosition.y] = null;
             world.world[this.position.x][this.position.y] = this;
         }
         else{

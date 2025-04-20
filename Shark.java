@@ -34,7 +34,7 @@ public class Shark extends Creature {
         } else {
             this.position = newPosition;
             world.world[newPosition.x][newPosition.y] = this;
-            world.world[oldPosition.x][oldPosition.y] = new Water(oldPosition.x, oldPosition.y);
+            world.world[oldPosition.x][oldPosition.y] = null;
         }
 
         this.energy--;
@@ -53,7 +53,7 @@ public class Shark extends Creature {
     }
 
     private void leaveThisWorld(World world) {
-        world.world[this.position.x][this.position.y] = new Water(this.position.x, this.position.y);
+        world.world[this.position.x][this.position.y] = null;
     }
 
     private void breed(World world, Position oldPosition, Position newPosition) {
@@ -68,7 +68,7 @@ public class Shark extends Creature {
         this.energy += ENERGY_FROM_EATEN_FISH;
         this.position = newPosition;
         world.world[newPosition.x][newPosition.y] = this;
-        world.world[oldPosition.x][oldPosition.y] = new Water(oldPosition.x, oldPosition.y);
+        world.world[oldPosition.x][oldPosition.y] = null;
     }
 
     public Pair<ArrayList<Position>, ArrayList<Position>> getFreePositions(World world) {

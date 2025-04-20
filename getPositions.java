@@ -6,16 +6,16 @@ public class getPositions {
         int width = world.width;
         int height = world.height;
 
-        if (world.world[(position.x + 1) % width][position.y] instanceof Water) {
+        if (world.world[(position.x + 1) % width][position.y] == null) {
             resultEmpty.add(new Position((position.x + 1) % width, position.y));
         }
-        if (world.world[position.x][(position.y + 1) % height] instanceof Water) {
+        if (world.world[position.x][(position.y + 1) % height] == null) {
             resultEmpty.add(new Position(position.x, (position.y + 1) % height));
         }
-        if (world.world[(position.x - 1 + width) % width][position.y] instanceof Water) {
+        if (world.world[(position.x - 1 + width) % width][position.y] == null) {
             resultEmpty.add(new Position((position.x - 1 + width) % width, position.y));
         }
-        if (world.world[position.x][(position.y - 1 + height) % height] instanceof Water) {
+        if (world.world[position.x][(position.y - 1 + height) % height] == null) {
             resultEmpty.add(new Position(position.x, (position.y - 1 + height) % height));
         }
         return resultEmpty;

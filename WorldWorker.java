@@ -10,7 +10,7 @@ public class WorldWorker implements Runnable{
 
     public void workOnRow(int row){
         for (int j = 0; j < world.width; j++) {
-            if (world.world[j][row] instanceof Creature) {
+            if (world.world[j][row] != null) {
                 ((Creature) world.world[j][row]).move(world);
             }
         }
