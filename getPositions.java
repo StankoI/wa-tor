@@ -40,6 +40,4 @@ public class getPositions {
         }
         return resultFish;
     }
-
-
 }

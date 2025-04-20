@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Callable;
 
 public class Main {
-    private static final boolean ENABLE_ANIMATION = false; // Добавена константа
+    private static final boolean ENABLE_ANIMATION = true;
 
     public static void main(String[] args) {
 
