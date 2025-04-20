@@ -45,12 +45,12 @@ public class World {
         }
 
         createPositions(this.fishCount).forEach(p -> world[p.x][p.y] = new Fish(p.x, p.y));
-        createPositions(this.sharkCount).forEach(p -> world[p.x][p.y] = new Shark(p.x,p.y,10));
+        createPositions(this.sharkCount).forEach(p -> world[p.x][p.y] = new Shark(p.x,p.y,SHARK_ENERGY));
     }
 
     private HashSet<Position> createPositions(int n)
     {
-        HashSet<Position> positions = new HashSet<Position>();
+        HashSet<Position> positions = new HashSet<>();
         while(positions.size() < n) {
             int x = (int) (Math.random() * width);
             int y = (int) (Math.random() * height);
@@ -60,18 +60,6 @@ public class World {
             }
         }
         return positions;
-    }
-
-    public void updateWorld(){
-        for(int i = 0; i < this.width; i++){
-            for(int j = 0; j < this.height; j++){
-                if(world[i][j] instanceof Creature ){
-                    ((Creature)world[i][j]).move(this);
-                }
-            }
-        }
-
-        resetMovedFlags();
     }
 
     public void resetMovedFlags(){

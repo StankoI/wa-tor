@@ -72,7 +72,7 @@ public class Shark extends Creature {
     }
 
     public Pair<ArrayList<Position>, ArrayList<Position>> getFreePositions(World world) {
-        return new Pair<ArrayList<Position>, ArrayList<Position>>
+        return new Pair<>
                 (getPositions.getFreePositions(world, this.position),
                         getPositions.getPositionsWithFish(world, this.position));
     }
